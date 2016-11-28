@@ -1,5 +1,5 @@
 <template>
-  <component :is="wrap ? 'WrapperInput' : 'SingleInput'">
+  <component :is="wrap ? 'WrapperInput' : 'SingleInput'" :value="value">
     <slot></slot>
   </component>
 </template>
@@ -46,6 +46,7 @@ export default {
       this.datepicker = new Datepicker(this.$el, this.config, this.l10n)
       this.datepicker.set('onChange', (d, s) => {
         this.value = s
+        this.$emit('input', s)
       })
     }
   },
